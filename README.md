@@ -1,4 +1,6 @@
 # ZostiNicheEvol
+Studying the evolution of bioclimatic niches in white-eyes (Aves: *Zosterops*).  
+
 A collection of R code used for the analyses in the following manuscript:
 
 Engler JO, Lawrie Y, Cabral JS & Lens L (submitted): Niche evolution reveals disparate signatures of speciation in the 'great speciator' (white-eyes, Aves: *Zosterops*). *J Biogeogr* Manuscript ID JBI-19-0491 
