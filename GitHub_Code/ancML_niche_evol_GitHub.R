@@ -74,6 +74,11 @@ fitEB <- anc.ML(newtree, x, model = "EB") #Early Burst
 fitBM <- anc.ML(newtree, x, model = "BM") #Brownian Motion
 fitOU <- anc.ML(newtree, x, model = "OU") #single optimum OU
 
+# model comparison
+EM_AIC <- c((-2*fitEB$logLik)+(2*2), (-2*fitBM$logLik)+(2*2), (-2*fitOU$logLik)+(2*3)) #AIC function returns an error, so done by hand
+EM_param <- c(3, 2, 3)
+EM_AICc <- EM_AIC+((2*EM_param^2) + (2*EM_param)/c(10,10,10)-EM_param-c(1,1,1))
+
 # plots a phenogram of all three models compared
 phenogram(newtree,c(x,fitEB$ace),col=alpha("black", 0.9),ftype="off") 
 phenogram(newtree,c(x,fitBM$ace),col=alpha("red", 0.9),ftype="off", add = TRUE) 
@@ -83,6 +88,9 @@ phenogram(newtree,c(x,fitOU$ace),col=alpha("blue", 0.9),ftype="off", add = TRUE)
 logLik <- data.frame(fitEB$logLik, fitBM$logLik, fitOU$logLik)
 names(logLik)<-c(fitEB$model, fitBM$model, fitOU$model)
 logLik #EB with the maximum logLik
+
+res_model_comp = rbind(logLik, EM_AIC, EM_AICc, EM_param)
+rownames(res_model_comp) <- c("LogLik", "AIC", "AICc", "n param")
 
 
 ## 3) visualize variation in the phenogram using subsets of occurrence information to estimate ancestral states
